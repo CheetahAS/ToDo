@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ToDo List</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="todo">
+        <div class="todo__content">
+            <h1 class="todo__title">All tasks</h1>
+            <div class="todo__new">
+            <input id="new" type="text" placeholder="Add a new task inside">
+            <div id="add" class="todo__add">+</div> <!-- Здесь поставили плагин eCSSStractor, чтобы через ctr+c ctr+v копировать все классы с выделенного фрагмента в css-->
+            </div>
+            <div class="todo__tasks-count">
+                <span>Tasks in total:</span>
+                <strong id="count">0</strong>
+            </div>
+            <div id="tasks" class="todo__list">
+                
+            </div>
+        </div>
+    </div> 
+        
+    <script src="script.js"></script>
+</body>
+</html>
+
+
+
+
+
+
+
+
+<!-- ИСХОДНЫЙ HTML код для наглядности при задании стилей в CSS и теста JS, потом его удалили, так как формируем этот кусок кода посредством JS-->
+
+<!-- <div class="todo__task todo__task-completed"> добавили класс-модификатор, чтобы по нему в css привязать перечёркивание задачи при клике на неё
+    <label class="todo_checkbox">  обернули чек бокс в лейбл, чтобы при наведении на лейбл можно было активировать чек бокс
+       <input id="new" type="checkbox"> спрятали в css так как его нелзя стилизовать
+       <div></div> это мы будем стилизовать вместо чекбокса, но благодаря лейблу в который мы обвернули и чекбокс и этот div при нажатии на этот div чекбокс будет выделяться
+    </label>
+    <div class="todo__task-text">Lorem ipsum dolor sit amet consectetur adipisicing elit!</div>
+    <div class="todo__task-del">-</div>
+</div>
+<div class="todo_task">
+    <label class="todo_checkbox"> обернули чек бокс в лейбл, чтобы при наведении на лейбл можно было активировать чек бокс
+       <input type="checkbox"> спрятали в css так как его нелзя стилизовать
+       <div></div> это мы будем стилизовать вместо чекбокса, но благодаря лейблу в который мы обвернули и чекбокс и этот div при нажатии на этот div чекбокс будет выделяться
+    </label>
+    <div class="todo__task-text">Lorem ipsum dolor sit amet consectetur adipisicing elit!</div>
+    <div class="todo__task-del">-</div>
+</div> -->

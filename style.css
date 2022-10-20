@@ -1,0 +1,137 @@
+@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@200;300;400;500;600;700;800&display=swap');
+
+:root { /*создаём директорию в корне, в которой будут видны переменные */
+    --accent: #EA5959; /* создали переменную accent с цветом с фигмы*/
+    --default: rgba(0,0,0, 0.3);
+}
+
+* { /*звёздочка это селектор, который выбираем все элементы документа */
+    margin: 0;
+    box-sizing: border-box; /* для того, чтобы padding включался в высоту блока нужно прописать box-sizing: border-box;*/
+}
+
+body {
+    font-family: 'Nunito', sans-serif;
+    background-color: var(--accent); /* применили переменную accent */
+    height: 100vh; /* задали высоту 100% от view heigh (высоты окна) */
+    display: flex;
+    justify-content: center;
+    padding: 32px;
+    font-size: 18px;
+    font-weight: 300;
+}
+
+.todo {
+    padding: 32px;
+    background-color: white;
+    width: 90vw; /* задали ширину 90% от view width (ширины окна) */
+    border-radius: 18px;
+}
+
+/*4 класса ниже были скопированы с помощью плагина eCSSStractor */
+.todo__content {
+}
+.todo__title {
+}
+.todo__new {
+    --size: 50px;
+    display: flex;
+    margin: 16px 0 16px;
+}
+.todo__add, .todo__task-del { /* добавили к двум классам    одинаковые стили */
+    height: var(--size);/* применили переменную size (делается через var() */
+    width: var(--size);
+    border-radius: var(--size);
+    text-align: center;
+    line-height: calc(var(--size) / 1.1);/*задали такую же высоту линии, как и высоту блока, чтобы выровнялось по центру и с пмоощью calc пересчитали для красивости отображения*/
+    font-size: 32px;
+    font-weight: 200;
+    background: var(--accent);
+    color: white;
+    cursor: pointer; /*чтобы курсор на кнопке отображался как рука (выглядел как кнопка) добавим cursor: pointer; */
+}
+
+.todo__new input {
+    margin-right: 16px;
+    font-size: 18px;
+    font-weight: 300;
+    padding: 10px 27px 19px 27px;
+    border: 1px solid var(--default);
+    border-radius: 5px;
+    height: var(--size); /* применили переменную size (делается через var() */
+    flex-grow: 1; /*используем всю доступную ширину контейнера todo__new, применив flex-grow: 1 */
+}
+
+.todo__list {
+    margin-top: 16px;
+}
+
+.todo__list > *:not(:last-child) {/*селектор для элементов первого уровня вложенности в классе .todo__list, которые не являются последними*/
+    margin-bottom: 8px;
+}
+.todo__task {
+    cursor: default; /* оставляем курсор при наведении обычный (стрелочку) вместо I*/
+    --size: 36px; /* переопределили переменную --size */
+    display: flex;
+    min-height: var(--size); /* чтобы блоки не прыгали при наведении на таску и появлении кнопки удаления ставим min-height*/
+    align-items: center; /* так как это flexbox можно выравнить элементы по вертикали */
+}
+
+.todo__task-completed .todo__task-text { /*выбрали селектор по классу .todo__task-completed и уже в нём выбрали селектор по классу .todo__task-text */
+    text-decoration: line-through;
+    color: var(--default);
+}
+
+.todo__task:hover .todo__task-del { /* при наведении на todo__task отображаем кнопку удаление с классом .todo__task-del*/
+    display: block;
+}
+
+.todo__checkbox {
+    margin-right: 16px;
+}
+
+.todo__checkbox input{ /*спрятали чекбокс, так как его нельзя стилизовать, вместо него через div добавим новый элемент и стилизуем его */
+    display: none;
+}
+
+.todo__checkbox input:checked + div { /* ловим состояние чекбокса чекед, чтобы потом при нажатии на label, который включает в себя скрытый активируемый чекбокс и наш стилизованный элемент div (при нажатии которого и происходит активация), мы могли скрывать и показывать content: '' в .todo_checkbox div::after.*/ 
+/*В строке .todo_checkbox input:checked + div ПЛЮС и последующий элемент показывает css к чему надо применять стиль. Вообще ПЛЮС после селектора показывает, что именно к следующему элементу нужно применять стили*/
+    background-color: var(--accent);
+}
+
+.todo__checkbox input:checked + div::after { /* Здесь мы делаем content у псевдо-элемента при активном чек-боксе видимым*/
+        display: block;
+    }
+
+.todo__checkbox div{
+    cursor: pointer;
+    --size: 28px;
+    height: var(--size);
+    width: var(--size);
+    border: 1px solid var(--accent);
+    border-radius: 4px;
+    position: relative; /* создаём псевдо-элементы, это шаг 1, шаг 2 идёт ниже это либо ::before либо ::after*/
+    color: white;
+}
+
+.todo__checkbox div::after { /*шаг 2 создаём псевдо элемент */
+    content: '\1F5F8'; /* этот css код галочки, можно эти коды в инете найти для разных элементов */
+    text-align: center;
+    display: none;
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+}
+
+.todo__task-text {
+    font-size: 20px;
+}
+.todo__task-del {
+    display: none; /* убрали отображение кнопки по умолчанию, чтобы потом её отобразить при наведении на нашу задачу todo__task */
+    margin-left: auto; /*так как это flex мы можем с помощью margin-left: auto; и margin-right: 0; сместить кнопку вправо */
+    margin-right: 0;
+    font-size: 44px;
+    line-height: calc(var(--size) * 0.88);
+}
